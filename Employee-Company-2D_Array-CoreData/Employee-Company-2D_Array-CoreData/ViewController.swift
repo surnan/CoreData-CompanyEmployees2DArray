@@ -10,15 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    private func setupNavigationBar(){
+        navigationController?.navigationBar.barTintColor = UIColor.lightRed
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes =  [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationItem.title = "Companies"
         
-        view.backgroundColor = UIColor.yellow
-        navigationController?.navigationBar.backgroundColor = .red
-        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAddCompany))
+        
+        
+        
         
     }
 
+
+    @objc private func handleAddCompany(){
+        print("xxxx")
+    }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.yellow
+        setupNavigationBar()
+        
+    }
 }
 

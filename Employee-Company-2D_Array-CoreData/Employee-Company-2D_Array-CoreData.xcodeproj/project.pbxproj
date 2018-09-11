@@ -12,6 +12,7 @@
 		844BEB742147EDF700367E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB722147EDF700367E02 /* Main.storyboard */; };
 		844BEB762147EDF900367E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB752147EDF900367E02 /* Assets.xcassets */; };
 		844BEB792147EDF900367E02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB772147EDF900367E02 /* LaunchScreen.storyboard */; };
+		844BEB83214881D600367E02 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB82214881D600367E02 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		844BEB752147EDF900367E02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844BEB782147EDF900367E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844BEB7A2147EDF900367E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		844BEB82214881D600367E02 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				844BEB6E2147EDF700367E02 /* AppDelegate.swift */,
 				844BEB702147EDF700367E02 /* ViewController.swift */,
+				844BEB82214881D600367E02 /* UIColor+Extension.swift */,
 				844BEB722147EDF700367E02 /* Main.storyboard */,
 				844BEB752147EDF900367E02 /* Assets.xcassets */,
 				844BEB772147EDF900367E02 /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844BEB83214881D600367E02 /* UIColor+Extension.swift in Sources */,
 				844BEB712147EDF700367E02 /* ViewController.swift in Sources */,
 				844BEB6F2147EDF700367E02 /* AppDelegate.swift in Sources */,
 			);
