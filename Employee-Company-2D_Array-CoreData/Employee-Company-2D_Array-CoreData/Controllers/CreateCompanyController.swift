@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 
-protocol CreateCompanyControllerDelegate {
+protocol CreateCompanyControllerDelegate: class {
     func didAddCompany(company: Company)
 }
 
@@ -43,8 +44,7 @@ class CreateCompanyController:UIViewController {
     
     
     private func setupUI(){
-        
-//        [nameLabel].forEach{}
+
         [lightBlueBackgroundView, nameLabel, nameTextField].forEach{view.addSubview($0)}
 
         NSLayoutConstraint.activate([
@@ -70,9 +70,7 @@ class CreateCompanyController:UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Create Company"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
-        
         view.backgroundColor = UIColor.darkBlue
         setupUI()
         
@@ -84,14 +82,24 @@ class CreateCompanyController:UIViewController {
     
     @objc private func handleSave(){
         print("Trying to Save Company")
-
-
-        dismiss(animated: true, completion: { [unowned self] in
-            guard let name = self.nameTextField.text else {return}
-            let company = Company(name: name, date: Date())
-            self.delegate?.didAddCompany(company: company)
-        })
+     
+        
+        
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
+        company.setValue(nameTextField.text, forKey: "name")
+                                                                                              
+        do {
+            try context.save()
+            dismiss(animated: true) {
+                self.delegate?.didAddCompany(company: company as! Company)
+            }
+        }
+        catch let saveErr {
+                print("Unable to save new company \(saveErr)")
+        }
     }
-    
 }
 

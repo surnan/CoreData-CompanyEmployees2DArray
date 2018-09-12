@@ -7,11 +7,7 @@
 //
 
 import UIKit
-
-
-//protocol CreateCompanyControllerDelegate {
-//    func didAddCompany(company: Company)
-//}
+import CoreData
 
 
 class CompaniesController: UITableViewController, CreateCompanyControllerDelegate {
@@ -20,13 +16,16 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         let newIndexPath = IndexPath(row: companies.count-1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .right)
     }
-    
 
-    var companies = [
-        Company(name: "Apple", date: Date()),
-        Company(name: "Google", date: Date()),
-        Company(name: "Facebook", date: Date()),
-    ]
+//    var companies = [
+//        Company(name: "Apple", date: Date()),
+//        Company(name: "Google", date: Date()),
+//        Company(name: "Facebook", date: Date()),
+//    ]
+
+    
+    var companies = [Company]()
+    
     
     private func setupNavigationBar(){
         navigationItem.title = "Companies"
@@ -66,6 +65,21 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         present(navController, animated: true)
     }
     
+    
+    private func fetchCompanies(){
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
+        do {
+            let companies = try context.fetch(fetchRequest)
+            companies.forEach{print($0.name ?? "")}
+            
+            self.companies = companies
+            tableView.reloadData()
+        } catch let fetchErr {
+            print("****\nFailed to fetch companies \(fetchErr)")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
@@ -74,6 +88,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
 //        tableView.separatorStyle = .none
         tableView.separatorColor = UIColor.white
         tableView.tableFooterView = UIView()
+        fetchCompanies()
     }
 }
 
