@@ -8,9 +8,21 @@
 
 import UIKit
 
-class CompaniesController: UITableViewController {
 
-    let companies = [
+//protocol CreateCompanyControllerDelegate {
+//    func didAddCompany(company: Company)
+//}
+
+
+class CompaniesController: UITableViewController, CreateCompanyControllerDelegate {
+    func didAddCompany(company: Company) {
+        companies.append(company)
+        let newIndexPath = IndexPath(row: companies.count-1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .right)
+    }
+    
+
+    var companies = [
         Company(name: "Apple", date: Date()),
         Company(name: "Google", date: Date()),
         Company(name: "Facebook", date: Date()),
@@ -49,6 +61,7 @@ class CompaniesController: UITableViewController {
     @objc private func handleAddCompany(){
         print("Adding company...")
         let createCompanyController = CreateCompanyController()
+        createCompanyController.delegate = self
         let navController = CustomNavigationController(rootViewController: createCompanyController)
         present(navController, animated: true)
     }
