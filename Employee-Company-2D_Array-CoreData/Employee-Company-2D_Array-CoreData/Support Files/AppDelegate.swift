@@ -23,10 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UINavigationBar.appearance().barTintColor = UIColor.lightRed
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().largeTitleTextAttributes =  [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes =  [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white  //makes the left & right bar button item text white
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let companiesController = ViewController()
+        let companiesController = CompaniesController()
         let navController = CustomNavigationController(rootViewController: companiesController)
         window?.rootViewController = navController
         return true
@@ -53,7 +58,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
