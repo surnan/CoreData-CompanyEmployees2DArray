@@ -17,15 +17,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         tableView.insertRows(at: [newIndexPath], with: .right)
     }
 
-//    var companies = [
-//        Company(name: "Apple", date: Date()),
-//        Company(name: "Google", date: Date()),
-//        Company(name: "Facebook", date: Date()),
-//    ]
-
-    
     var companies = [Company]()
-    
     
     private func setupNavigationBar(){
         navigationItem.title = "Companies"
@@ -56,6 +48,40 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50.0
     }
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self](_, indexPath) in
+            let company = self.companies[indexPath.row]
+            print("Deleting \(company.name ?? "")")
+            
+            self.companies.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+            
+            do {
+                let context = CoreDataManager.shared.persistentContainer.viewContext
+                context.delete(company)
+                try context.save()
+            }catch let deleteCoreErr {
+                print("Error deleting core data from tableView: \(deleteCoreErr)")
+            }
+            
+            
+            
+            
+            
+        }
+
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { [unowned self](_, indexPath) in
+            let company = self.companies[indexPath.row]
+            print("Editing \(company.name ?? "")")
+        }
+        
+        editAction.backgroundColor = UIColor.darkBlue
+        return [deleteAction, editAction]
+        
+    }
+    
     
     @objc private func handleAddCompany(){
         print("Adding company...")
