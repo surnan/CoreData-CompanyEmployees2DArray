@@ -22,16 +22,23 @@ class CreateCompanyController:UIViewController, UIImagePickerControllerDelegate,
             nameTextField.text = company?.name
             if let companyImageData = company?.imageData, let image = UIImage(data: companyImageData){
                 companyImageView.image = image
-                companyImageView.layer.cornerRadius = companyImageView.frame.width // 2  <--- comment out the divide by 2 solved bug
-                companyImageView.clipsToBounds = true
-                companyImageView.layer.borderWidth = 2
-                companyImageView.layer.borderColor = UIColor.darkBlue.cgColor
-                companyImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                setupCircularStyle()
+          
             }
             guard let currentDate = company?.founded else {return}
             datePicker.date = currentDate
         }
     }
+    
+    
+    private func setupCircularStyle(){
+        companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
+        companyImageView.clipsToBounds = true
+        companyImageView.layer.borderWidth = 2
+        companyImageView.layer.borderColor = UIColor.darkBlue.cgColor
+        companyImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+    }
+    
     
     weak var delegate: CreateCompanyControllerDelegate?
     
@@ -91,8 +98,8 @@ class CreateCompanyController:UIViewController, UIImagePickerControllerDelegate,
             lightBlueBackgroundView.heightAnchor.constraint(equalToConstant: 400),
             
             companyImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            companyImageView.heightAnchor.constraint(equalToConstant: 200 ),
-            companyImageView.widthAnchor.constraint(equalToConstant: 200),
+            companyImageView.heightAnchor.constraint(equalToConstant: 100 ),
+            companyImageView.widthAnchor.constraint(equalToConstant: 100),
             companyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                            
             nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor, constant: 10),
@@ -121,10 +128,13 @@ class CreateCompanyController:UIViewController, UIImagePickerControllerDelegate,
                 companyImageView.image = originalImage
             }
         }
-        companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
-        companyImageView.layer.borderWidth = 2
-        companyImageView.clipsToBounds = true
-        companyImageView.layer.borderColor = UIColor.darkBlue.cgColor
+        
+        setupCircularStyle()
+        
+//        companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
+//        companyImageView.layer.borderWidth = 2
+//        companyImageView.clipsToBounds = true
+//        companyImageView.layer.borderColor = UIColor.darkBlue.cgColor
         dismiss(animated: true, completion: nil)
     }
     
