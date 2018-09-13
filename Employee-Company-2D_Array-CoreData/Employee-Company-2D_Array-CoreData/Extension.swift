@@ -22,3 +22,23 @@ extension UIColor{
     static let lightBrown = UIColor(displayP3Red: 145/255, green: 130/255, blue: 130/255, alpha: 1)
     static let veryLightGrey = UIColor(displayP3Red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
 }
+
+
+//imagePicker has default NavigationController internally.  We can't force it to use CustomNavigationController
+//So we use this extension to also change behavior of default UINavigationController
+extension UINavigationController {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
+
+//extension UIView {
+//    static func makeCircle(cornerRadius: Double){
+//        layer.cornerRadius = CGFloat(cornerRadius)
+//        clipsToBounds = true
+//        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//    }
+//}
+
+

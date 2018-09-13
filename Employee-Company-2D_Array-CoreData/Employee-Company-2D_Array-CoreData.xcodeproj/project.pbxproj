@@ -12,8 +12,7 @@
 		844BEB742147EDF700367E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB722147EDF700367E02 /* Main.storyboard */; };
 		844BEB762147EDF900367E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB752147EDF900367E02 /* Assets.xcassets */; };
 		844BEB792147EDF900367E02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB772147EDF900367E02 /* LaunchScreen.storyboard */; };
-		844BEB83214881D600367E02 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB82214881D600367E02 /* UIColor+Extension.swift */; };
-		844BEB85214892A400367E02 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB84214892A400367E02 /* Company.swift */; };
+		844BEB83214881D600367E02 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB82214881D600367E02 /* Extension.swift */; };
 		844BEB8721489A3400367E02 /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB8621489A3400367E02 /* CreateCompanyController.swift */; };
 		844BEB8C2149465500367E02 /* Workforce.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB8A2149465500367E02 /* Workforce.xcdatamodeld */; };
 		84915DF2214969E6002D4144 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84915DF1214969E6002D4144 /* CoreDataManager.swift */; };
@@ -28,8 +27,7 @@
 		844BEB752147EDF900367E02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844BEB782147EDF900367E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844BEB7A2147EDF900367E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		844BEB82214881D600367E02 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		844BEB84214892A400367E02 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		844BEB82214881D600367E02 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		844BEB8621489A3400367E02 /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
 		844BEB8B2149465500367E02 /* Workforce.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Workforce.xcdatamodel; sourceTree = "<group>"; };
 		84915DF1214969E6002D4144 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -69,8 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				844BEB8821489F5300367E02 /* Controllers */,
-				844BEB82214881D600367E02 /* UIColor+Extension.swift */,
-				844BEB84214892A400367E02 /* Company.swift */,
+				844BEB82214881D600367E02 /* Extension.swift */,
 				844BEB8921489F6600367E02 /* Support Files */,
 				844BEB7A2147EDF900367E02 /* Info.plist */,
 				84915DF1214969E6002D4144 /* CoreDataManager.swift */,
@@ -170,13 +167,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				84915DF421496B4F002D4144 /* Constants.swift in Sources */,
-				844BEB83214881D600367E02 /* UIColor+Extension.swift in Sources */,
+				844BEB83214881D600367E02 /* Extension.swift in Sources */,
 				844BEB712147EDF700367E02 /* CompaniesController.swift in Sources */,
 				844BEB8C2149465500367E02 /* Workforce.xcdatamodeld in Sources */,
 				844BEB8721489A3400367E02 /* CreateCompanyController.swift in Sources */,
 				844BEB6F2147EDF700367E02 /* AppDelegate.swift in Sources */,
 				84915DF2214969E6002D4144 /* CoreDataManager.swift in Sources */,
-				844BEB85214892A400367E02 /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
