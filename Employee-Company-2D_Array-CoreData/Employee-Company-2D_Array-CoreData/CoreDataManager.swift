@@ -10,15 +10,6 @@ import UIKit
 import CoreData
 
 
-//let persistentContainer = NSPersistentContainer(name: "Workforce")
-//persistentContainer.loadPersistentStores { (storeDescription, err) in
-//    if let error = err {
-//        fatalError("****\nloading of store failed: \(error)")
-//    }
-//}
-//let context = persistentContainer.viewContext
-
-
 struct CoreDataManager {
     static let shared = CoreDataManager()
     let persistentContainer: NSPersistentContainer = {
@@ -30,4 +21,19 @@ struct CoreDataManager {
         })
         return container
     }()
+    
+    
+    func fetchCompanies() -> ([Company], Error?) {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
+        do {
+            let companies = try context.fetch(fetchRequest)
+            companies.forEach{print($0.name ?? "")}
+            return (companies, nil)
+        } catch let fetchErr {
+            print("****\nFailed to fetch companies \(fetchErr)")
+            return ([], fetchErr)
+        }
+    }
+    
 }

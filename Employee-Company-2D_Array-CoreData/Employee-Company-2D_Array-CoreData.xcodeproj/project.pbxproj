@@ -18,6 +18,10 @@
 		84915DF2214969E6002D4144 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84915DF1214969E6002D4144 /* CoreDataManager.swift */; };
 		84915DF421496B4F002D4144 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84915DF321496B4F002D4144 /* Constants.swift */; };
 		84D5B7FE214AEE6E003E54EF /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5B7FD214AEE6E003E54EF /* CompanyCell.swift */; };
+		84D5B800214AF85E003E54EF /* CompaniesController+CreateCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5B7FF214AF85E003E54EF /* CompaniesController+CreateCompany.swift */; };
+		84D5B802214AF90F003E54EF /* CompaniesController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5B801214AF90F003E54EF /* CompaniesController+TableView.swift */; };
+		84D5B804214AFC5F003E54EF /* CreateCompanyController+UIImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5B803214AFC5F003E54EF /* CreateCompanyController+UIImagePicker.swift */; };
+		84D5B806214AFF72003E54EF /* CreateCompany+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5B805214AFF72003E54EF /* CreateCompany+UI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		84915DF1214969E6002D4144 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		84915DF321496B4F002D4144 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84D5B7FD214AEE6E003E54EF /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
+		84D5B7FF214AF85E003E54EF /* CompaniesController+CreateCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesController+CreateCompany.swift"; sourceTree = "<group>"; };
+		84D5B801214AF90F003E54EF /* CompaniesController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesController+TableView.swift"; sourceTree = "<group>"; };
+		84D5B803214AFC5F003E54EF /* CreateCompanyController+UIImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCompanyController+UIImagePicker.swift"; sourceTree = "<group>"; };
+		84D5B805214AFF72003E54EF /* CreateCompany+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCompany+UI.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +89,12 @@
 		844BEB8821489F5300367E02 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84D5B805214AFF72003E54EF /* CreateCompany+UI.swift */,
 				844BEB8621489A3400367E02 /* CreateCompanyController.swift */,
+				84D5B803214AFC5F003E54EF /* CreateCompanyController+UIImagePicker.swift */,
 				844BEB702147EDF700367E02 /* CompaniesController.swift */,
+				84D5B801214AF90F003E54EF /* CompaniesController+TableView.swift */,
+				84D5B7FF214AF85E003E54EF /* CompaniesController+CreateCompany.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,12 +181,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D5B800214AF85E003E54EF /* CompaniesController+CreateCompany.swift in Sources */,
 				84915DF421496B4F002D4144 /* Constants.swift in Sources */,
 				844BEB83214881D600367E02 /* Extension.swift in Sources */,
 				844BEB712147EDF700367E02 /* CompaniesController.swift in Sources */,
 				84D5B7FE214AEE6E003E54EF /* CompanyCell.swift in Sources */,
 				844BEB8C2149465500367E02 /* Workforce.xcdatamodeld in Sources */,
 				844BEB8721489A3400367E02 /* CreateCompanyController.swift in Sources */,
+				84D5B806214AFF72003E54EF /* CreateCompany+UI.swift in Sources */,
+				84D5B802214AF90F003E54EF /* CompaniesController+TableView.swift in Sources */,
+				84D5B804214AFC5F003E54EF /* CreateCompanyController+UIImagePicker.swift in Sources */,
 				844BEB6F2147EDF700367E02 /* AppDelegate.swift in Sources */,
 				84915DF2214969E6002D4144 /* CoreDataManager.swift in Sources */,
 			);
