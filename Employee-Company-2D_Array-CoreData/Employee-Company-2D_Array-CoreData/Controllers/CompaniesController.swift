@@ -37,7 +37,6 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     
     
     @objc private func handleReset(){
-        
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let batchdelete = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
         
@@ -62,25 +61,14 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        cell.backgroundColor = UIColor.teal
-        cell.textLabel?.textColor = UIColor.white
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        let company = companies[indexPath.row]
-        
-        if let name = company.name, let founded = company.founded {
-            let dateformatter = DateFormatter()
-            dateformatter.dateFormat = "MM/dd/yyyy"
-            let dateString = dateformatter.string(from: founded)
-            cell.textLabel?.text = "\(name)   -   \(dateString)"
-        } else {
-            cell.textLabel?.text = companies[indexPath.row].name
-        }
-        
-        guard let imageFromData = company.imageData, let image = UIImage(data: imageFromData) else {return cell}
-        cell.imageView?.image = image
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! CompanyCell
+        cell.company = companies[indexPath.row]
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -158,7 +146,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: "cellID")
         view.backgroundColor = UIColor.darkBlue
         setupNavigationBar()
         //        tableView.separatorStyle = .none

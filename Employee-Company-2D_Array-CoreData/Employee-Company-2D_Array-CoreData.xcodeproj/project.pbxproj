@@ -17,6 +17,7 @@
 		844BEB8C2149465500367E02 /* Workforce.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB8A2149465500367E02 /* Workforce.xcdatamodeld */; };
 		84915DF2214969E6002D4144 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84915DF1214969E6002D4144 /* CoreDataManager.swift */; };
 		84915DF421496B4F002D4144 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84915DF321496B4F002D4144 /* Constants.swift */; };
+		84D5B7FE214AEE6E003E54EF /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5B7FD214AEE6E003E54EF /* CompanyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		844BEB8B2149465500367E02 /* Workforce.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Workforce.xcdatamodel; sourceTree = "<group>"; };
 		84915DF1214969E6002D4144 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		84915DF321496B4F002D4144 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		84D5B7FD214AEE6E003E54EF /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				844BEB8921489F6600367E02 /* Support Files */,
 				844BEB7A2147EDF900367E02 /* Info.plist */,
 				84915DF1214969E6002D4144 /* CoreDataManager.swift */,
+				84D5B7FD214AEE6E003E54EF /* CompanyCell.swift */,
 			);
 			path = "Employee-Company-2D_Array-CoreData";
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				84915DF421496B4F002D4144 /* Constants.swift in Sources */,
 				844BEB83214881D600367E02 /* Extension.swift in Sources */,
 				844BEB712147EDF700367E02 /* CompaniesController.swift in Sources */,
+				84D5B7FE214AEE6E003E54EF /* CompanyCell.swift in Sources */,
 				844BEB8C2149465500367E02 /* Workforce.xcdatamodeld in Sources */,
 				844BEB8721489A3400367E02 /* CreateCompanyController.swift in Sources */,
 				844BEB6F2147EDF700367E02 /* AppDelegate.swift in Sources */,
