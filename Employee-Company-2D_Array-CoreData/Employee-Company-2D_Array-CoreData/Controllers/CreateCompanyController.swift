@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 protocol CreateCompanyControllerDelegate: class {
     func didAddCompany(company: Company)
     func didEditCompany(company: Company)
@@ -79,7 +78,7 @@ class CreateCompanyController:UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = company == nil ? "Create Company" : "Edit Company"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        setupCancelButtonInNavBar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
         view.backgroundColor = UIColor.darkBlue
         setupUI()
@@ -88,10 +87,6 @@ class CreateCompanyController:UIViewController, UIImagePickerControllerDelegate,
     @objc func handleSelectPhoto(){
         imagePickerController.delegate = self
         present(imagePickerController, animated: true)
-    }
-    
-    @objc private func handleCancel(){
-        dismiss(animated: true, completion: nil)
     }
     
     fileprivate func createCompany() {

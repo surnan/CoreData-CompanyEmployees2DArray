@@ -33,6 +33,30 @@ extension UINavigationController {
 }
 
 
+extension UIViewController {
+    func setupPlusButonInNavBar(selector: Selector){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: selector)
+    }
+    
+    func setupCancelButtonInNavBar(){
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+    }
+    
+    @objc func handleCancel(){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func setupBackButtonInNavBar(){
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleBack))
+    }
+    
+    @objc func handleBack(){
+        navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+
 //extension UIView {
 //    static func makeCircle(cornerRadius: Double){
 //        layer.cornerRadius = CGFloat(cornerRadius)

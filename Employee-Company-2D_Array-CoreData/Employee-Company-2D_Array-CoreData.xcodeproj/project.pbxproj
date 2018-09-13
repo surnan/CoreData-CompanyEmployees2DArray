@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8449453C214B0C2D00576223 /* EmployeesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449453B214B0C2D00576223 /* EmployeesController.swift */; };
+		8449453E214B219100576223 /* CreateEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449453D214B219100576223 /* CreateEmployeeController.swift */; };
 		844BEB6F2147EDF700367E02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB6E2147EDF700367E02 /* AppDelegate.swift */; };
 		844BEB712147EDF700367E02 /* CompaniesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BEB702147EDF700367E02 /* CompaniesController.swift */; };
 		844BEB742147EDF700367E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844BEB722147EDF700367E02 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8449453B214B0C2D00576223 /* EmployeesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesController.swift; sourceTree = "<group>"; };
+		8449453D214B219100576223 /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
 		844BEB6B2147EDF700367E02 /* Employee-Company-2D_Array-CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Employee-Company-2D_Array-CoreData.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		844BEB6E2147EDF700367E02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844BEB702147EDF700367E02 /* CompaniesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesController.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 				844BEB702147EDF700367E02 /* CompaniesController.swift */,
 				84D5B801214AF90F003E54EF /* CompaniesController+TableView.swift */,
 				84D5B7FF214AF85E003E54EF /* CompaniesController+CreateCompany.swift */,
+				8449453B214B0C2D00576223 /* EmployeesController.swift */,
+				8449453D214B219100576223 /* CreateEmployeeController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,9 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D5B800214AF85E003E54EF /* CompaniesController+CreateCompany.swift in Sources */,
+				8449453E214B219100576223 /* CreateEmployeeController.swift in Sources */,
 				84915DF421496B4F002D4144 /* Constants.swift in Sources */,
 				844BEB83214881D600367E02 /* Extension.swift in Sources */,
 				844BEB712147EDF700367E02 /* CompaniesController.swift in Sources */,
+				8449453C214B0C2D00576223 /* EmployeesController.swift in Sources */,
 				84D5B7FE214AEE6E003E54EF /* CompanyCell.swift in Sources */,
 				844BEB8C2149465500367E02 /* Workforce.xcdatamodeld in Sources */,
 				844BEB8721489A3400367E02 /* CreateCompanyController.swift in Sources */,
