@@ -31,6 +31,28 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     private func setupNavigationBar(){
         navigationItem.title = "Companies"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(handleAddCompany))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+    }
+    
+    
+    
+    @objc private func handleReset(){
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let batchdelete = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        
+        do {
+            try context.execute(batchdelete)
+            var indexPathsToDelete = [IndexPath]()
+            for (index, _) in companies.enumerated() {
+                indexPathsToDelete.append(IndexPath(row: index, section: 0))
+            }
+            
+            companies.removeAll()
+            tableView.deleteRows(at: indexPathsToDelete, with: .left)
+        } catch let coreDataDeleteAllErr {
+            print("Error trying to delete all entries from Core Data \(coreDataDeleteAllErr)")
+        }
     }
     
     
@@ -71,6 +93,18 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         return 50.0
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "No companies available.  \nPlease enter some..."
+        label.numberOfLines = -1
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return companies.count != 0 ? 0 : 150
+    }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self](_, indexPath) in
