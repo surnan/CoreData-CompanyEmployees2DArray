@@ -10,20 +10,22 @@ import UIKit
 
 extension CreateCompanyController {
     func setupUI(){
-        [lightBlueBackgroundView, nameLabel, nameTextField, datePicker, companyImageView].forEach{view.addSubview($0)}
+//        [lightBlueBackgroundView, nameLabel, nameTextField, datePicker, companyImageView].forEach{view.addSubview($0)}
+        
+        [nameLabel, nameTextField, datePicker, companyImageView].forEach{view.addSubview($0)}
+        
+        
+        let blueBackground = setupLightBlueBackgroundView(height: 400)
+        
+        
         NSLayoutConstraint.activate([
-            lightBlueBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            lightBlueBackgroundView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            lightBlueBackgroundView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            lightBlueBackgroundView.heightAnchor.constraint(equalToConstant: 400),
-            
             companyImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             companyImageView.heightAnchor.constraint(equalToConstant: 100 ),
             companyImageView.widthAnchor.constraint(equalToConstant: 100),
             companyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor, constant: 10),
-            nameLabel.leadingAnchor.constraint(equalTo: lightBlueBackgroundView.leadingAnchor, constant: 10),
+            nameLabel.leadingAnchor.constraint(equalTo: blueBackground.leadingAnchor, constant: 10),
             nameLabel.widthAnchor.constraint(equalToConstant: 75),
             
             nameTextField.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
@@ -34,7 +36,7 @@ extension CreateCompanyController {
             datePicker.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             datePicker.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             datePicker.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
-            datePicker.bottomAnchor.constraint(equalTo: lightBlueBackgroundView.bottomAnchor)
+            datePicker.bottomAnchor.constraint(equalTo: blueBackground.bottomAnchor)
             ])
     }
     

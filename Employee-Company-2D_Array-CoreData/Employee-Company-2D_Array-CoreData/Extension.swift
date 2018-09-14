@@ -54,6 +54,28 @@ extension UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func setupLightBlueBackgroundView(height: CGFloat) -> UIView{
+        
+        let lightBlueBackgroundView: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor.lightBlue
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        
+        
+        view.insertSubview(lightBlueBackgroundView, at: 0)
+        
+        NSLayoutConstraint.activate([
+            lightBlueBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            lightBlueBackgroundView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            lightBlueBackgroundView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            lightBlueBackgroundView.heightAnchor.constraint(equalToConstant: 400),
+            ])
+        return lightBlueBackgroundView
+    }
+    
+    
 }
 
 

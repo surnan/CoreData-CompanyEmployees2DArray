@@ -15,4 +15,5 @@ enum Constants: String {
     case Founded    //Attribute within Company
     case select_photo_empty     //image from Assets
     case imageData  //Attribute within Company
+    case Employee   //Entity Name
 }

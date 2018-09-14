@@ -61,13 +61,6 @@ class CreateCompanyController:UIViewController, UIImagePickerControllerDelegate,
         return textField
     }()
     
-    let lightBlueBackgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.lightBlue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let datePicker: UIDatePicker = {
         var datepicker = UIDatePicker()
         datepicker.datePickerMode = .date
