@@ -70,7 +70,7 @@ extension UIViewController {
             lightBlueBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             lightBlueBackgroundView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             lightBlueBackgroundView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            lightBlueBackgroundView.heightAnchor.constraint(equalToConstant: 400),
+            lightBlueBackgroundView.heightAnchor.constraint(equalToConstant: height),
             ])
         return lightBlueBackgroundView
     }

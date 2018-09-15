@@ -8,27 +8,6 @@
 
 import UIKit
 
-/*
- //        cell.backgroundColor = UIColor.teal
- //        cell.textLabel?.textColor = UIColor.white
- //        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
- //
- //        let company = companies[indexPath.row]
- //
- //        if let name = company.name, let founded = company.founded {
- //            let dateformatter = DateFormatter()
- //            dateformatter.dateFormat = "MM/dd/yyyy"
- //            let dateString = dateformatter.string(from: founded)
- //            cell.textLabel?.text = "\(name)   -   \(dateString)"
- //        } else {
- //            cell.textLabel?.text = companies[indexPath.row].name
- //        }
- //
- //        guard let imageFromData = company.imageData, let image = UIImage(data: imageFromData) else {return cell}
- //        cell.imageView?.image = image
-*/
-
-
 class CompanyCell: UITableViewCell {
     
     var company: Company? {

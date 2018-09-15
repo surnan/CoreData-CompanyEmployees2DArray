@@ -37,10 +37,15 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
         cell?.backgroundColor = UIColor.teal
         cell?.textLabel?.textColor = UIColor.white
         cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-
-        guard let cellString = employee.name else {return cell!}
+        
+        guard var cellString = employee.name else {return cell!}
         guard let taxId = employee.employeeInformation?.taxId else {return cell!}
-    
+        if let birthday = employee.employeeInformation?.birthday{
+            let dateformatter = DateFormatter()
+            dateformatter.dateFormat = "MM/dd/yyyy"
+            let dateString = dateformatter.string(from: birthday)
+            cellString = cellString + "  -DOB:- \(dateString)"
+        }
         cell?.textLabel?.text = "\(cellString)   ---- \(taxId)"
         return cell!
     }
@@ -52,7 +57,6 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     }
     
     @objc private func handleAddBarButton(){
-        print("ADD ADD ADD")
         let createEmployeeController = CreateEmployeeController()
         createEmployeeController.company = company
         createEmployeeController.delegate = self
@@ -62,22 +66,8 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     
     var employees = [Employee]()
     private func fetchEmployees(){
-        
         guard let companyEmployees = company?.employees?.allObjects as? [Employee] else {return}
         self.employees = companyEmployees
-        
-        
-        
-        
-        
-//        let context = CoreDataManager.shared.persistentContainer.viewContext
-//        let request = NSFetchRequest<Employee>(entityName: "Employee")
-//        do {
-//            employees = try context.fetch(request)
-//            employees.forEach{print("Employee name: \($0.name ?? "")")}
-//        } catch let fetchEmployeesErr {
-//            print("Failed to fetch employees \(fetchEmployeesErr)")
-//        }
     }
     
     override func viewDidLoad() {
