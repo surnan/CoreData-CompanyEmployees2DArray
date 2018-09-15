@@ -23,7 +23,7 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     }
     
     var company: Company?
-    var employees = [Employee]()
+//    var employees = [Employee]()
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return employees.count
@@ -31,10 +31,17 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "asdf")
-        cell?.textLabel?.text = employees[indexPath.row].name
+        let employee = employees[indexPath.row]
+        
+        cell?.textLabel?.text = employee.name
         cell?.backgroundColor = UIColor.teal
         cell?.textLabel?.textColor = UIColor.white
         cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+
+        guard let cellString = employee.name else {return cell!}
+        guard let taxId = employee.employeeInformation?.taxId else {return cell!}
+    
+        cell?.textLabel?.text = "\(cellString)   ---- \(taxId)"
         return cell!
     }
     
@@ -47,21 +54,30 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     @objc private func handleAddBarButton(){
         print("ADD ADD ADD")
         let createEmployeeController = CreateEmployeeController()
+        createEmployeeController.company = company
         createEmployeeController.delegate = self
         let navController = CustomNavigationController(rootViewController: createEmployeeController )
         present(navController, animated: true)
     }
     
-    
+    var employees = [Employee]()
     private func fetchEmployees(){
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        let request = NSFetchRequest<Employee>(entityName: "Employee")
-        do {
-            employees = try context.fetch(request)
-            employees.forEach{print("Employee name: \($0.name ?? "")")}
-        } catch let fetchEmployeesErr {
-            print("Failed to fetch employees \(fetchEmployeesErr)")
-        }
+        
+        guard let companyEmployees = company?.employees?.allObjects as? [Employee] else {return}
+        self.employees = companyEmployees
+        
+        
+        
+        
+        
+//        let context = CoreDataManager.shared.persistentContainer.viewContext
+//        let request = NSFetchRequest<Employee>(entityName: "Employee")
+//        do {
+//            employees = try context.fetch(request)
+//            employees.forEach{print("Employee name: \($0.name ?? "")")}
+//        } catch let fetchEmployeesErr {
+//            print("Failed to fetch employees \(fetchEmployeesErr)")
+//        }
     }
     
     override func viewDidLoad() {

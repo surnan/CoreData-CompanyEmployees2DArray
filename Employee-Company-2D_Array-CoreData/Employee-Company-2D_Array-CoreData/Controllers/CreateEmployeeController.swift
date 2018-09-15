@@ -27,6 +27,8 @@ class CreateEmployeeController: UIViewController {
         return textField
     }()
     
+    var company: Company?
+    
     private func setupNavigationBar(){
         navigationItem.title = "Create Employee"
         setupCancelButtonInNavBar()
@@ -37,7 +39,9 @@ class CreateEmployeeController: UIViewController {
     @objc private func handleSave(){
         print("save save save")
         guard let name = nameTextField.text else {return}
-        let (newEmployee, error) = CoreDataManager.shared.createEmployee(employee: name)
+        guard let company = self.company else {return}
+        
+        let (newEmployee, error) = CoreDataManager.shared.createEmployee(employeeName: name, company: company )
 
         if let error = error {
             print("Error = \(error)")
