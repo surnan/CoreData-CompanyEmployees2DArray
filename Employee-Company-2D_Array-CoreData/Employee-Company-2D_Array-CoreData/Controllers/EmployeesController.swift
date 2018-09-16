@@ -14,12 +14,32 @@ protocol CreateEmployeeControllerDelegate {
     func didAddEmployee(employee: Employee)
 }
 
+enum EmployeeTypes: String {
+    case Executives
+    case Managers
+    case Staff
+    case Intern
+}
+
 class EmployeesController:UITableViewController, CreateEmployeeControllerDelegate {
+    
     func didAddEmployee(employee: Employee) {
-        print("Employee Added")
-        employees.append(employee)
-        let indexPath = IndexPath(row: employees.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .right)
+//        var section = 0
+//        guard let type = employee.type else {print("UNABLE TO UPDATE TABLE!");return}
+//        switch type{
+//        case EmployeeTypes.Executives.rawValue: section = 0
+//        case EmployeeTypes.Managers.rawValue: section = 1
+//        case EmployeeTypes.Staff.rawValue: section = 2
+//        default:
+//            fatalError("EMPLOYEE TYPE NOT IN ENUM")
+//        }
+//        allEmployees[section].append(employee)
+//        let indexPath = IndexPath(row: allEmployees[section].count - 1, section: section)
+        guard let section = employeeTypes.index(of: employee.type!) else {return}   //<- Bryan
+        allEmployees[section].append(employee)                          //Added by me to preven crashing
+        let row = allEmployees[section].count                                       //<- Bryan
+        let insertionIndexPath = IndexPath(row: row - 1, section: section)          //<- Bryan
+        tableView.insertRows(at: [insertionIndexPath], with: .right)                //<- Bryan
     }
     
     var company: Company?
@@ -66,12 +86,14 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
         let label = IndentedLabel()
         var titleString = ""
 
-        switch section {
-        case 0: titleString = "Short Names"
-        case 1: titleString = "Long Names"
-        case 2: titleString = "Really Names"
-        default:fatalError("Invalid section - \(section)")
-        }
+//        switch section {
+//        case 0: titleString = EmployeeTypes.Executives.rawValue
+//        case 1: titleString = EmployeeTypes.Managers.rawValue
+//        case 2: titleString = EmployeeTypes.Staff.rawValue
+//        default:fatalError("Invalid section - \(section)")
+//        }
+        
+        titleString = employeeTypes[section]  //<---- From Bryan
         
         label.text = titleString
         label.backgroundColor = UIColor.lightBlue
@@ -98,40 +120,28 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
         present(navController, animated: true)
     }
     
-    var employees = [Employee]()
-    var shortNameEmployees = [Employee]()
-    var longNameEmployees = [Employee]()
-    var reallyLongNameEmployees = [Employee]()
-    
+//    var employees = [Employee]()
+//    var executives = [Employee]()
+//    var managers = [Employee]()
+//    var staff = [Employee]()
     var allEmployees = [[Employee]]()
-    
-    
+    var employeeTypes = [
+                            EmployeeTypes.Intern.rawValue,
+                            EmployeeTypes.Executives.rawValue,
+                            EmployeeTypes.Managers.rawValue,
+                            EmployeeTypes.Staff.rawValue,
+                        ]
     
     private func fetchEmployees(){
         guard let companyEmployees = company?.employees?.allObjects as? [Employee] else {return}
-        
-        shortNameEmployees = companyEmployees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count < 6
-            }
-            return false
-        })
-        
-        longNameEmployees = companyEmployees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count >= 6 && count < 9
-            }
-            return false
-        })
-        
-        reallyLongNameEmployees = companyEmployees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count >= 9
-            }
-            return false
-        })
-        
-        allEmployees = [shortNameEmployees, longNameEmployees, reallyLongNameEmployees]
+//        executives = companyEmployees.filter{$0.type == EmployeeTypes.Executives.rawValue}
+//        managers = companyEmployees.filter{$0.type == EmployeeTypes.Managers.rawValue}
+//        staff = companyEmployees.filter{$0.type == EmployeeTypes.Staff .rawValue}
+//        allEmployees = [executives, managers, staff]
+        allEmployees = []
+        employeeTypes.forEach { (employeeType) in
+            allEmployees.append(companyEmployees.filter{$0.type == employeeType})
+        }
     }
     
     override func viewDidLoad() {

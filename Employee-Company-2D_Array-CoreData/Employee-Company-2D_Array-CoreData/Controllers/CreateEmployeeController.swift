@@ -41,7 +41,23 @@ class CreateEmployeeController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-    
+
+    let employeeTypeSegmentedControl: UISegmentedControl = {
+//        let type = ["Executives", "Managers", "Staff"]
+        let type = [EmployeeTypes.Executives.rawValue,
+                    EmployeeTypes.Managers.rawValue,
+                    EmployeeTypes.Staff.rawValue,
+                    EmployeeTypes.Intern.rawValue
+                    ]
+        
+        let sc = UISegmentedControl(items: type)
+        sc.selectedSegmentIndex = 2
+        sc.backgroundColor = UIColor.lightBlue
+        sc.tintColor = UIColor.darkBlue
+        
+        sc .translatesAutoresizingMaskIntoConstraints = false
+        return sc
+    }()
     
     private func setupNavigationBar(){
         navigationItem.title = "Create Employee"
@@ -68,8 +84,7 @@ class CreateEmployeeController: UIViewController {
             return
         }
         
-        
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         guard let birthdayDate = dateFormatter.date(from: birthdayText) else {
@@ -77,12 +92,17 @@ class CreateEmployeeController: UIViewController {
             return
         }
         
-        let (newEmployee, error) = CoreDataManager.shared.createEmployee(employeeName: name, birthday: birthdayDate, company: company )
+        
+        guard let employeeType = employeeTypeSegmentedControl.titleForSegment(at: employeeTypeSegmentedControl.selectedSegmentIndex) else {return}
+        
+        let (newEmployee, error) = CoreDataManager.shared.createEmployee(employeeName: name, birthday: birthdayDate, employeeType: employeeType, company: company )
         if let error = error {
             print("Error = \(error)")
         }
+        
+        guard let currentEmployee = newEmployee else {return}
         dismiss(animated: true, completion: {[unowned self] in
-            self.delegate?.didAddEmployee(employee: newEmployee!)
+            self.delegate?.didAddEmployee(employee: currentEmployee)
         })
     }
     
@@ -91,8 +111,8 @@ class CreateEmployeeController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.darkBlue
         setupNavigationBar()
-        let blueBackgroundView = setupLightBlueBackgroundView(height: 100)
-        [nameLabel, nameTextField, birthdayLabel, birthdayTextField].forEach{view.addSubview($0)}
+        let blueBackgroundView = setupLightBlueBackgroundView(height: 150)
+        [nameLabel, nameTextField, birthdayLabel, birthdayTextField, employeeTypeSegmentedControl].forEach{view.addSubview($0)}
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: blueBackgroundView.topAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: blueBackgroundView.leadingAnchor, constant: 10),
@@ -103,7 +123,7 @@ class CreateEmployeeController: UIViewController {
             nameTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor),
             nameTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor),
             
-            birthdayLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            birthdayLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
             birthdayLabel.leadingAnchor.constraint(equalTo: blueBackgroundView.leadingAnchor, constant: 10),
             birthdayLabel.widthAnchor.constraint(equalToConstant: 75),
             
@@ -111,6 +131,11 @@ class CreateEmployeeController: UIViewController {
             birthdayTextField.trailingAnchor.constraint(equalTo: blueBackgroundView.trailingAnchor),
             birthdayTextField.topAnchor.constraint(equalTo: birthdayLabel.topAnchor),
             birthdayTextField.heightAnchor.constraint(equalTo: birthdayLabel.heightAnchor),
+            
+            
+            employeeTypeSegmentedControl.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor, constant: 30),
+            employeeTypeSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            birthdayLabel.widthAnchor.constraint(equalToConstant: 75),
             ])
     }
 }
