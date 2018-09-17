@@ -21,6 +21,16 @@ enum EmployeeTypes: String {
     case Intern
 }
 
+
+class IndentedLabel: UILabel {
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        let customRect = UIEdgeInsetsInsetRect(rect, insets)
+        super.drawText(in: customRect)
+    }
+}
+
+
 class EmployeesController:UITableViewController, CreateEmployeeControllerDelegate {
     
     func didAddEmployee(employee: Employee) {
@@ -74,14 +84,7 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     
     
     
-    class IndentedLabel: UILabel {
-        override func drawText(in rect: CGRect) {
-            let insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-            let customRect = UIEdgeInsetsInsetRect(rect, insets)
-            super.drawText(in: customRect)
-        }
-    }
-
+  
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = IndentedLabel()
         var titleString = ""
