@@ -81,6 +81,7 @@ class CompaniesAutoUpdateController2:UITableViewController, NSFetchedResultsCont
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = IndentedLabel()
         label.backgroundColor = UIColor.lightBlue
+        label.text = fetchedResultsController.sectionIndexTitles[section]
         return label
     }
     
