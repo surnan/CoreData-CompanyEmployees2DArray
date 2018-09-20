@@ -10,7 +10,6 @@ import UIKit
 
 extension CreateCompanyController {
     func setupUI(){
-//        [lightBlueBackgroundView, nameLabel, nameTextField, datePicker, companyImageView].forEach{view.addSubview($0)}
         
         [nameLabel, nameTextField, datePicker, companyImageView].forEach{view.addSubview($0)}
         

@@ -43,7 +43,6 @@ class CreateEmployeeController: UIViewController {
     }()
 
     let employeeTypeSegmentedControl: UISegmentedControl = {
-//        let type = ["Executives", "Managers", "Staff"]
         let type = [EmployeeTypes.Executives.rawValue,
                     EmployeeTypes.Managers.rawValue,
                     EmployeeTypes.Staff.rawValue,

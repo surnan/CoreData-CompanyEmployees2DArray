@@ -16,11 +16,20 @@ protocol CreateEmployeeControllerDelegate {
 
 enum EmployeeTypes: String {
     case Executives
+    case SeniorManagement  = "Senior Management"
     case Managers
     case Staff
     case Intern
 }
 
+enum EmployeeType: String {
+    case Executives
+    case Executive
+    case Managers
+    case Staff
+    case Intern
+    case SeniorManagement  = "Senior Management"
+}
 
 class IndentedLabel: UILabel {
     override func drawText(in rect: CGRect) {
@@ -34,17 +43,6 @@ class IndentedLabel: UILabel {
 class EmployeesController:UITableViewController, CreateEmployeeControllerDelegate {
     
     func didAddEmployee(employee: Employee) {
-//        var section = 0
-//        guard let type = employee.type else {print("UNABLE TO UPDATE TABLE!");return}
-//        switch type{
-//        case EmployeeTypes.Executives.rawValue: section = 0
-//        case EmployeeTypes.Managers.rawValue: section = 1
-//        case EmployeeTypes.Staff.rawValue: section = 2
-//        default:
-//            fatalError("EMPLOYEE TYPE NOT IN ENUM")
-//        }
-//        allEmployees[section].append(employee)
-//        let indexPath = IndexPath(row: allEmployees[section].count - 1, section: section)
         guard let section = employeeTypes.index(of: employee.type!) else {return}   //<- Bryan
         allEmployees[section].append(employee)                          //Added by me to preven crashing
         let row = allEmployees[section].count                                       //<- Bryan
@@ -59,23 +57,22 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "asdf")
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let employee = allEmployees[indexPath.section][indexPath.row]
-        cell?.textLabel?.text = employee.name
-        cell?.backgroundColor = UIColor.teal
-        cell?.textLabel?.textColor = UIColor.white
-        cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        guard var cellString = employee.name else {return cell!}
-        guard let taxId = employee.employeeInformation?.taxId else {return cell!}
-        if let birthday = employee.employeeInformation?.birthday{
-            let dateformatter = DateFormatter()
-            dateformatter.dateFormat = "MM/dd/yyyy"
-            let dateString = dateformatter.string(from: birthday)
-            cellString = cellString + "  -DOB:- \(dateString)"
+        cell.textLabel?.text = employee.name
+        
+        if let birthday = employee.employeeInformation?.birthday {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+            cell.textLabel?.text = "\(employee.name ?? "")    \(dateFormatter.string(from: birthday))"
         }
-        cell?.textLabel?.text = "\(cellString)   ---- \(taxId)"
-        return cell!
+
+        cell.backgroundColor = UIColor.teal
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        return cell
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -88,14 +85,6 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = IndentedLabel()
         var titleString = ""
-
-//        switch section {
-//        case 0: titleString = EmployeeTypes.Executives.rawValue
-//        case 1: titleString = EmployeeTypes.Managers.rawValue
-//        case 2: titleString = EmployeeTypes.Staff.rawValue
-//        default:fatalError("Invalid section - \(section)")
-//        }
-        
         titleString = employeeTypes[section]  //<---- From Bryan
         
         label.text = titleString
@@ -123,36 +112,43 @@ class EmployeesController:UITableViewController, CreateEmployeeControllerDelegat
         present(navController, animated: true)
     }
     
-//    var employees = [Employee]()
-//    var executives = [Employee]()
-//    var managers = [Employee]()
-//    var staff = [Employee]()
     var allEmployees = [[Employee]]()
+
     var employeeTypes = [
-                            EmployeeTypes.Intern.rawValue,
-                            EmployeeTypes.Executives.rawValue,
-                            EmployeeTypes.Managers.rawValue,
-                            EmployeeTypes.Staff.rawValue,
-                        ]
+        EmployeeType.Intern.rawValue,
+        EmployeeType.Executive.rawValue,
+        EmployeeType.SeniorManagement.rawValue,
+        EmployeeType.Staff.rawValue,
+        ]
     
-    private func fetchEmployees(){
-        guard let companyEmployees = company?.employees?.allObjects as? [Employee] else {return}
-//        executives = companyEmployees.filter{$0.type == EmployeeTypes.Executives.rawValue}
-//        managers = companyEmployees.filter{$0.type == EmployeeTypes.Managers.rawValue}
-//        staff = companyEmployees.filter{$0.type == EmployeeTypes.Staff .rawValue}
-//        allEmployees = [executives, managers, staff]
+    
+    private func fetchEmployees2() {
+        guard let companyEmployees = company?.employees?.allObjects as? [Employee] else { return }
         allEmployees = []
         employeeTypes.forEach { (employeeType) in
-            allEmployees.append(companyEmployees.filter{$0.type == employeeType})
+            allEmployees.append(
+                companyEmployees.filter { $0.type == employeeType }
+            )
+        }
+    }
+    private func fetchEmployees(){
+        guard let companyEmployees = company?.employees?.allObjects as? [Employee] else {return}
+        allEmployees = []
+        employeeTypes.forEach { (employeeType) in
+            allEmployees.append(
+                companyEmployees.filter{$0.type == employeeType}
+            )
         }
     }
     
+    let cellId = "asdf"
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "asdf")
-        setupNavigationBar()
-        tableView.backgroundColor = UIColor.darkBlue
         fetchEmployees()
+        tableView.backgroundColor = UIColor.darkBlue
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        setupNavigationBar()
+        
     }
 }
 
